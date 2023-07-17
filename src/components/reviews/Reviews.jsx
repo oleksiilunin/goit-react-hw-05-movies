@@ -38,9 +38,9 @@ const Reviews = () => {
 
   return (
     <>
-      {results.length === 0 && <dir>There are no reviews for this movie</dir>},
+      <h3>Reviews:</h3>
+      {results.length === 0 && <dir>There are no reviews for this movie</dir>}
       <>
-        <h3>Reviews:</h3>
         <ul>
           {results.map(({ author, content }) => {
             return (
