@@ -2,13 +2,12 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { cancelAllRequests, get } from 'services/api';
 
-const ENDPOINT = '/trending/all/day';
-
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   const location = useLocation();
-  // const navigate = useNavigate();
+
+  const ENDPOINT = '/trending/all/day';
 
   useEffect(() => {
     const fetchTrendingMovies = async () => {
@@ -27,25 +26,16 @@ const Home = () => {
     // };
   }, []);
 
-  // const handleClick = id => {
-  //   id && navigate(`/movie/${id}`);
-  //   console.log(id);
-  // };
-
   return (
     <div>
       <h2>Trending today</h2>
       <ul>
-        {trendingMovies.map(({ title, name, id }) => {
+        {trendingMovies.map(({ title, id }) => {
           return (
-            (title || name) && (
+            title && (
               <li key={id}>
-                <Link
-                  to={`/movie/${id}`}
-                  state={{ from: location }}
-                  // onClick={() => handleClick(id)}
-                >
-                  <h3>{title || name}</h3>
+                <Link to={`/movie/${id}`} state={{ from: location }}>
+                  <h3>{title}</h3>
                 </Link>
               </li>
             )
