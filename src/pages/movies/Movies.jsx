@@ -1,63 +1,66 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { get } from 'services/api';
 import { toast } from 'react-toastify';
 import notifyOptions from 'helpers/toastNotifyOptions';
 import { FiSearch } from 'react-icons/fi';
+import NoResultCard from 'components/NoResultCard/NoResultCard';
 
 const Movies = () => {
   const location = useLocation();
   const [page, setPage] = useState(1);
-  const [searchParams, setSearchParams] = useSearchParams();
   const [searchData, setSearchData] = useState(null);
-  const previousInputValue = useRef('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleChangeQuery = ({ target: { value } }) => {
+    setSearchQuery(value.toLowerCase());
+  };
 
   const movieName = searchParams.get('movieName') ?? '';
 
   const ENDPOINT = `/search/movie?query=${movieName}`;
 
-  const fetchSearchingMovies = async () => {
-    try {
-      const data = await get(ENDPOINT, page);
-      console.log(data.results);
-      setSearchData(data);
-    } catch (error) {
-      console.error('Помилка при виконанні запиту:', error);
-    }
-  };
   useEffect(() => {
-    if (!movieName) {
+    const fetchSearchingMovies = async () => {
+      try {
+        const data = await get(ENDPOINT, page);
+        console.log(data.results);
+        setSearchData(data);
+      } catch (error) {
+        console.error('Помилка при виконанні запиту:', error);
+      }
+    };
+
+    if (movieName) {
       fetchSearchingMovies();
     }
 
     // return () => {
     //   cancelAllRequests(); // Скасовує всі запити при розмонтуванні компонента
     // };
-  }, []);
+  }, [ENDPOINT, movieName, page]);
 
-  const updateQueryString = e => {
-    const movieNameValue = e.target.value;
-    if (movieNameValue === '') {
-      return setSearchParams({});
-    }
-    setSearchParams({ movieName: movieNameValue.trim() });
-  };
+  // const updateQueryString = e => {
+  //   const movieNameValue = e.target.value;
+  //   if (movieNameValue === '') {
+  //     return setSearchParams({});
+  //   }
+  //   setSearchParams({ movieName: movieNameValue.trim() });
+  // };
 
   const handleSearchMovie = event => {
     event.preventDefault();
     const currentInputValue = event.target.query.value;
 
-    if (movieName === '') {
+    if (currentInputValue === '') {
       toast.info('Enter a search query', notifyOptions);
       return;
     }
-    if (currentInputValue === previousInputValue.current) {
-      return;
-    }
 
-    fetchSearchingMovies();
+    setSearchParams({ movieName: currentInputValue.trim() });
 
-    previousInputValue.current = currentInputValue;
+    // previousInputValue.current = currentInputValue;
   };
 
   return (
@@ -66,11 +69,11 @@ const Movies = () => {
         <input
           type="text"
           name="query"
-          value={movieName}
+          value={searchQuery}
           autoComplete="off"
           autoFocus
           placeholder="Search movies"
-          onChange={updateQueryString}
+          onChange={handleChangeQuery}
         />
 
         <button type="submit">
@@ -79,9 +82,13 @@ const Movies = () => {
         </button>
       </form>
 
-      <ul>
-        {searchData &&
-          searchData.results.map(({ id, title }) => {
+      {searchData?.results?.length === 0 && (
+        <NoResultCard>Oops! There are no movies found...</NoResultCard>
+      )}
+
+      {searchData && (
+        <ul>
+          {searchData.results.map(({ id, title }) => {
             return (
               title && (
                 <li key={id}>
@@ -92,7 +99,8 @@ const Movies = () => {
               )
             );
           })}
-      </ul>
+        </ul>
+      )}
     </div>
   );
 };
