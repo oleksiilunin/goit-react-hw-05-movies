@@ -1,7 +1,10 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
-import { cancelAllRequests, get } from 'services/api';
+import {
+  // cancelAllRequests,
+  get,
+} from 'services/api';
 
 import notFoundPoster from '../../assets/Movie_poster_coming_soon.jpg';
 

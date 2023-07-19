@@ -8,7 +8,7 @@ import NoResultCard from 'components/NoResultCard/NoResultCard';
 
 const Movies = () => {
   const location = useLocation();
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
   const [searchData, setSearchData] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
@@ -24,7 +24,7 @@ const Movies = () => {
   useEffect(() => {
     const fetchSearchingMovies = async () => {
       try {
-        const data = await get(ENDPOINT, page);
+        const data = await get(ENDPOINT);
         console.log(data.results);
         setSearchData(data);
       } catch (error) {
@@ -39,7 +39,7 @@ const Movies = () => {
     // return () => {
     //   cancelAllRequests(); // Скасовує всі запити при розмонтуванні компонента
     // };
-  }, [ENDPOINT, movieName, page]);
+  }, [ENDPOINT, movieName]);
 
   // const updateQueryString = e => {
   //   const movieNameValue = e.target.value;

@@ -6,14 +6,14 @@ const Reviews = () => {
   const { movieId } = useParams();
 
   const [reviewsData, setReviewsData] = useState(null);
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
 
   const ENDPOINT = `/movie/${movieId}/reviews`;
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const reviewsData = await get(ENDPOINT, page);
+        const reviewsData = await get(ENDPOINT);
         // setTrendingMovies(data.results);
         console.log('reviewsData', reviewsData);
 

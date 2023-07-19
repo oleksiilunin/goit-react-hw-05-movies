@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { cancelAllRequests, get } from 'services/api';
+import { Link, useLocation } from 'react-router-dom';
+import {
+  // cancelAllRequests,
+  get,
+} from 'services/api';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
