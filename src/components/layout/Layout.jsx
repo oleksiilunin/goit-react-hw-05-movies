@@ -3,30 +3,39 @@ import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {
+  Header,
+  LayoutContainer,
+  Main,
+  NavItem,
+  NavList,
+  Navigation,
+  StyledNavLink,
+} from './Layout.styled';
 
 const Layout = () => {
   return (
     <>
-      <div>
-        <header>
-          <nav>
-            <ul>
-              <li>
-                <NavLink to="/">Home</NavLink>
-              </li>
-              <li>
-                <NavLink to="/movie">Movies</NavLink>
-              </li>
-            </ul>
-          </nav>
-        </header>
-        <main>
+      <LayoutContainer>
+        <Header>
+          <Navigation>
+            <NavList>
+              <NavItem>
+                <StyledNavLink to="/">Home</StyledNavLink>
+              </NavItem>
+              <NavItem>
+                <StyledNavLink to="/movie">Movies</StyledNavLink>
+              </NavItem>
+            </NavList>
+          </Navigation>
+        </Header>
+        <Main>
           <Suspense fallback={<div>Loading...</div>}>
             <Outlet />
           </Suspense>
-        </main>
-        <footer>Footer</footer>
-      </div>
+        </Main>
+        {/* <footer>Footer</footer> */}
+      </LayoutContainer>
       <GlobalStyles />
       <ToastContainer />
     </>
