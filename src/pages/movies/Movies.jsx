@@ -16,8 +16,6 @@ const Movies = () => {
 
   const ENDPOINT = `/search/movie?query=${movieName}`;
 
-  console.log('MOVIE_NAME >>>', movieName);
-
   const fetchSearchingMovies = async () => {
     try {
       const data = await get(ENDPOINT, page);
@@ -27,9 +25,8 @@ const Movies = () => {
       console.error('Помилка при виконанні запиту:', error);
     }
   };
-
   useEffect(() => {
-    if (movieName) {
+    if (!movieName) {
       fetchSearchingMovies();
     }
 
@@ -49,7 +46,6 @@ const Movies = () => {
   const handleSearchMovie = event => {
     event.preventDefault();
     const currentInputValue = event.target.query.value;
-    console.log('currentInputValue>>>>>>', currentInputValue);
 
     if (movieName === '') {
       toast.info('Enter a search query', notifyOptions);
