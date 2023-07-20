@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { get } from 'services/api';
-import notFoundPoster from '../../assets/No_Photo_2.jpg';
+import notFoundPoster from '../../assets/No_photo.png';
+import {
+  CastImg,
+  CastInfoBox,
+  CastInfoSpan,
+  CastInfoText,
+  CastItem,
+  CastList,
+} from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -37,11 +45,11 @@ const Cast = () => {
   const { cast } = castData;
   return (
     <>
-      <ul>
+      <CastList>
         {cast.map(({ profile_path, name, character, id }) => {
           return (
-            <li key={id}>
-              <img
+            <CastItem key={id}>
+              <CastImg
                 src={
                   profile_path
                     ? 'https://image.tmdb.org/t/p/w500' + profile_path
@@ -49,14 +57,17 @@ const Cast = () => {
                 }
                 alt={name}
               />
-              <p>{name}</p>
-              <p>
-                Character: <span>{character}</span>
-              </p>
-            </li>
+              <CastInfoBox>
+                <CastInfoText>{name}</CastInfoText>
+                <CastInfoText>
+                  <CastInfoSpan>Character: </CastInfoSpan>
+                  {character}
+                </CastInfoText>
+              </CastInfoBox>
+            </CastItem>
           );
         })}
-      </ul>
+      </CastList>
     </>
   );
 };
