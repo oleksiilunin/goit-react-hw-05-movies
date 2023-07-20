@@ -5,6 +5,8 @@ export const LayoutContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  /* align-items: center; */
+  margin: 0 auto;
   gap: 48px;
 
   width: 1200px;
@@ -14,8 +16,10 @@ export const Header = styled.header`
   position: fixed;
   display: flex;
   padding: 8px 24px;
-  width: 100vw;
+  width: 1200px;
   height: 64px;
+  border-radius: 8px;
+
   background-color: #ececec;
   /* box-shadow: rgb(125, 123, 131) -1px -1px 15px, rgb(255, 255, 255) 5px 5px 15px; */
 `;
@@ -42,9 +46,9 @@ export const StyledNavLink = styled(NavLink)`
   border: 1px solid #cececf;
 
   background-color: #d2d8db;
-  color: #666666;
+  color: #5b5c6c;
 
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
 
   &:hover,
