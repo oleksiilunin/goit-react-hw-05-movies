@@ -11,13 +11,15 @@ export const CardWrapper = styled.div`
 
 export const CardText = styled.h2`
   max-width: 80%;
-  color: #666666;
+  color: #5b5c6c;
 
+  font-size: 36px;
   text-align: center;
 `;
 
 export const CardImage = styled.img`
-  width: 30vw;
+  max-width: 40vw;
+  width: 100%;
   height: auto;
   object-fit: contain;
   object-position: center;
