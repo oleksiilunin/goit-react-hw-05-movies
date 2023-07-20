@@ -7,6 +7,28 @@ import {
 } from 'services/api';
 
 import notFoundPoster from '../../assets/Movie_poster_coming_soon.jpg';
+import {
+  AdditionalInfoContainer,
+  AdditionalInfoItem,
+  AdditionalInfoLink,
+  AdditionalInfoList,
+  AdditionalInfoTitle,
+  BackLink,
+  GenresBox,
+  GenresContainer,
+  GenresText,
+  GenresTitle,
+  MainContainer,
+  MovieImage,
+  MovieInfoContainer,
+  MovieRating,
+  MovieRatingBackground,
+  MovieTitle,
+  MovieWrapper,
+  OverviewContainer,
+  OverviewText,
+  OverviewTitle,
+} from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const location = useLocation();
@@ -67,10 +89,12 @@ const MovieDetails = () => {
 
   // console.log('location', location);
   return (
-    <>
-      <Link to={backLinkLocationRef.current}>Back to the list of movies</Link>
-      <div>
-        <img
+    <MainContainer>
+      <BackLink to={backLinkLocationRef.current}>
+        Back to the list of movies
+      </BackLink>
+      <MovieWrapper>
+        <MovieImage
           src={
             poster_path
               ? 'https://image.tmdb.org/t/p/original' + poster_path
@@ -78,50 +102,56 @@ const MovieDetails = () => {
           }
           alt={title || name}
         />
-        <h2>
-          {title || name} ({release_date.slice(0, 4)})
-        </h2>
-        <p>Rating: {vote_average.toFixed(1)}</p>
-        <div>
-          <h3>Overview</h3>
-          <p>{overview}</p>
-        </div>
-        <div>
-          <h4>Genres</h4>
-          <div>
-            {genres.map(genre => {
-              return <p key={genre.id}>{genre.name}</p>;
-            })}
-          </div>
-        </div>
-      </div>
-      <div>
-        <p>Additional info</p>
-        <ul>
-          <li>
-            <Link
+        <MovieInfoContainer>
+          <MovieTitle>
+            {title || name} ({release_date.slice(0, 4)})
+          </MovieTitle>
+          <MovieRating>
+            <MovieRatingBackground>
+              Rating: {vote_average.toFixed(1)}
+            </MovieRatingBackground>
+          </MovieRating>
+          <OverviewContainer>
+            <OverviewTitle>Overview</OverviewTitle>
+            <OverviewText>{overview}</OverviewText>
+          </OverviewContainer>
+          <GenresContainer>
+            <GenresTitle>Genres</GenresTitle>
+            <GenresBox>
+              {genres.map(genre => {
+                return <GenresText key={genre.id}>{genre.name}</GenresText>;
+              })}
+            </GenresBox>
+          </GenresContainer>
+        </MovieInfoContainer>
+      </MovieWrapper>
+      <AdditionalInfoContainer>
+        <AdditionalInfoTitle>Additional info</AdditionalInfoTitle>
+        <AdditionalInfoList>
+          <AdditionalInfoItem>
+            <AdditionalInfoLink
               name="reviews"
               to={isReviewsOpen ? 'reviews' : ''}
               onClick={toggleInfo}
             >
               Reviews
-            </Link>
-          </li>
-          <li>
-            <Link
+            </AdditionalInfoLink>
+          </AdditionalInfoItem>
+          <AdditionalInfoItem>
+            <AdditionalInfoLink
               name="cast"
               to={isCastOpen ? 'cast' : ''}
               onClick={toggleInfo}
             >
               Cast
-            </Link>
-          </li>
-        </ul>
-      </div>
+            </AdditionalInfoLink>
+          </AdditionalInfoItem>
+        </AdditionalInfoList>
+      </AdditionalInfoContainer>
       <Suspense fallback={<div>LOADING SUBPAGE...</div>}>
         <Outlet />
       </Suspense>
-    </>
+    </MainContainer>
   );
 };
 
