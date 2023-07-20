@@ -5,6 +5,16 @@ import { toast } from 'react-toastify';
 import notifyOptions from 'helpers/toastNotifyOptions';
 import { FiSearch } from 'react-icons/fi';
 import NoResultCard from 'components/NoResultCard/NoResultCard';
+import {
+  Form,
+  ButtonForm,
+  Input,
+  LabelButton,
+  MoviesContainer,
+  MoviesList,
+  MoviesItem,
+  MovieTitle,
+} from './Movies.styled';
 
 const Movies = () => {
   const location = useLocation();
@@ -64,9 +74,9 @@ const Movies = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSearchMovie}>
-        <input
+    <MoviesContainer>
+      <Form onSubmit={handleSearchMovie}>
+        <Input
           type="text"
           name="query"
           value={searchQuery}
@@ -76,32 +86,32 @@ const Movies = () => {
           onChange={handleChangeQuery}
         />
 
-        <button type="submit">
-          <FiSearch size={24} />
-          Search
-        </button>
-      </form>
+        <ButtonForm type="submit">
+          <FiSearch size={32} />
+          <LabelButton>Search</LabelButton>
+        </ButtonForm>
+      </Form>
 
       {searchData?.results?.length === 0 && (
         <NoResultCard>Oops! There are no movies found...</NoResultCard>
       )}
 
       {searchData && (
-        <ul>
+        <MoviesList>
           {searchData.results.map(({ id, title }) => {
             return (
               title && (
-                <li key={id}>
+                <MoviesItem key={id}>
                   <Link to={`/movie/${id}`} state={{ from: location }}>
-                    {title}
+                    <MovieTitle>{title}</MovieTitle>
                   </Link>
-                </li>
+                </MoviesItem>
               )
             );
           })}
-        </ul>
+        </MoviesList>
       )}
-    </div>
+    </MoviesContainer>
   );
 };
 
