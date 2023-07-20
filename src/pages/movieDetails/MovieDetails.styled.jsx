@@ -13,7 +13,7 @@ export const BackLink = styled(Link)`
   justify-content: center;
   align-items: center;
   padding: 8px 16px;
-  width: 20vw;
+  width: 30vw;
   border-radius: 8px;
   border: 1px solid #cececf;
 

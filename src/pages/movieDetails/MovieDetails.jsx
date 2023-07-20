@@ -29,6 +29,7 @@ import {
   OverviewText,
   OverviewTitle,
 } from './MovieDetails.styled';
+import Loader from 'components/Loader/Loader';
 
 const MovieDetails = () => {
   const location = useLocation();
@@ -146,7 +147,7 @@ const MovieDetails = () => {
           </AdditionalInfoItem>
         </AdditionalInfoList>
       </AdditionalInfoContainer>
-      <Suspense fallback={<div>LOADING SUBPAGE...</div>}>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
     </MainContainer>
