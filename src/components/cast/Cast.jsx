@@ -23,7 +23,6 @@ const Cast = () => {
       try {
         const castData = await get(ENDPOINT);
         // setTrendingMovies(data.results);
-        console.log('castData', castData);
 
         setCastData(castData);
       } catch (error) {

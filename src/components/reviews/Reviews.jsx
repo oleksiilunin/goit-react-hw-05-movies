@@ -21,7 +21,6 @@ const Reviews = () => {
       try {
         const reviewsData = await get(ENDPOINT);
         // setTrendingMovies(data.results);
-        console.log('reviewsData', reviewsData);
 
         setReviewsData(reviewsData);
       } catch (error) {

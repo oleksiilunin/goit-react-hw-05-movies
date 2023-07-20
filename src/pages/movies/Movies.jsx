@@ -35,7 +35,6 @@ const Movies = () => {
     const fetchSearchingMovies = async () => {
       try {
         const data = await get(ENDPOINT);
-        console.log(data.results);
         setSearchData(data);
       } catch (error) {
         console.error('Помилка при виконанні запиту:', error);

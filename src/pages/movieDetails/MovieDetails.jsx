@@ -45,7 +45,6 @@ const MovieDetails = () => {
       try {
         const movieData = await get(ENDPOINT);
         // setTrendingMovies(data.results);
-        console.dir(movieData);
 
         setMovieData(movieData);
       } catch (error) {
@@ -61,7 +60,6 @@ const MovieDetails = () => {
   }, [ENDPOINT]);
 
   const toggleInfo = event => {
-    console.log('EVENT>TARGET', event.target.name);
     const name = event.target.name;
     if (name === 'reviews') {
       setIsReviewsOpen(prevState => !prevState);
