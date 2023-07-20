@@ -4,6 +4,13 @@ import {
   // cancelAllRequests,
   get,
 } from 'services/api';
+import {
+  HomeContainer,
+  HomeItem,
+  HomeList,
+  HomeMovieTitle,
+  HomeTitle,
+} from './Home.styled';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -30,22 +37,22 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Trending today</h2>
-      <ul>
+    <HomeContainer>
+      <HomeTitle>Trending today</HomeTitle>
+      <HomeList>
         {trendingMovies.map(({ title, id }) => {
           return (
             title && (
-              <li key={id}>
+              <HomeItem key={id}>
                 <Link to={`/movie/${id}`} state={{ from: location }}>
-                  <h3>{title}</h3>
+                  <HomeMovieTitle>{title}</HomeMovieTitle>
                 </Link>
-              </li>
+              </HomeItem>
             )
           );
         })}
-      </ul>
-    </div>
+      </HomeList>
+    </HomeContainer>
   );
 };
 
