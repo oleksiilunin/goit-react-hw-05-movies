@@ -12,7 +12,7 @@ import {
   Navigation,
   StyledNavLink,
 } from './Layout.styled';
-import Loader from 'components/loader/Loader';
+import Loader from 'components/Loader/Loader';
 
 const Layout = () => {
   return (

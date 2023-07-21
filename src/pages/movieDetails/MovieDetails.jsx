@@ -29,7 +29,7 @@ import {
   OverviewText,
   OverviewTitle,
 } from './MovieDetails.styled';
-import Loader from 'components/loader/Loader';
+import Loader from 'components/Loader/Loader';
 
 const MovieDetails = () => {
   const location = useLocation();
