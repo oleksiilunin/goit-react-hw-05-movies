@@ -1,4 +1,5 @@
 import { GlobalStyles } from 'components/GlobalStyles';
+import Loader from '../loader/Loader';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -12,7 +13,6 @@ import {
   Navigation,
   StyledNavLink,
 } from './Layout.styled';
-import Loader from 'components/loader/Loader';
 
 const Layout = () => {
   return (

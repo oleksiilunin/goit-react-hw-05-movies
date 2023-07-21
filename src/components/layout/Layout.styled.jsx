@@ -68,26 +68,3 @@ export const Main = styled.main`
   padding-right: 24px;
   padding-left: 24px;
 `;
-//   <div>
-//     <header>
-//       <nav>
-//         <ul>
-//           <li>
-//             <NavLink to="/">Home</NavLink>
-//           </li>
-//           <li>
-//             <NavLink to="/movie">Movies</NavLink>
-//           </li>
-//         </ul>
-//       </nav>
-//     </header>
-//     <main>
-//       <Suspense fallback={<div>Loading...</div>}>
-//         <Outlet />
-//       </Suspense>
-//     </main>
-//     {/* <footer>Footer</footer> */}
-//   </div>
-//   <GlobalStyles />
-//   <ToastContainer />
-// </>
