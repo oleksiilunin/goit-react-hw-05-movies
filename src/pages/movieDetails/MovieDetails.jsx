@@ -29,7 +29,7 @@ import {
   OverviewText,
   OverviewTitle,
 } from './MovieDetails.styled';
-import Loader from 'components/Loader/Loader';
+import Loader from 'components/loader/Loader';
 
 const MovieDetails = () => {
   const location = useLocation();
@@ -64,9 +64,15 @@ const MovieDetails = () => {
     const name = event.target.name;
     if (name === 'reviews') {
       setIsReviewsOpen(prevState => !prevState);
+      if (!isCastOpen) {
+        setIsCastOpen(prevState => !prevState);
+      }
     }
     if (name === 'cast') {
       setIsCastOpen(prevState => !prevState);
+      if (!isReviewsOpen) {
+        setIsReviewsOpen(prevState => !prevState);
+      }
     }
   };
 
