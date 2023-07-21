@@ -20,7 +20,7 @@ export default function App() {
           <Route path="reviews" element={<Reviews />} />
           <Route path="cast" element={<Cast />} />
         </Route>
-        {/* <Route path="*" element={<NotFound />} /> */}
+        <Route path="*" element={<Home />} />
       </Route>
     </Routes>
   );

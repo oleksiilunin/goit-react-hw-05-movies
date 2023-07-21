@@ -11,21 +11,26 @@ import {
   HomeMovieTitle,
   HomeTitle,
 } from './Home.styled';
+import Loader from 'components/loader/Loader';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const location = useLocation();
 
   const ENDPOINT = '/trending/all/day';
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchTrendingMovies = async () => {
       try {
         const data = await get(ENDPOINT);
         setTrendingMovies(data.results);
       } catch (error) {
         console.error('Помилка при виконанні запиту:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -39,6 +44,8 @@ const Home = () => {
   return (
     <HomeContainer>
       <HomeTitle>Trending today</HomeTitle>
+      {isLoading && <Loader />}
+
       <HomeList>
         {trendingMovies.map(({ title, id }) => {
           return (

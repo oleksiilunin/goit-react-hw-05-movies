@@ -15,10 +15,13 @@ import {
   MovieTitle,
 } from './Movies.styled';
 import NoResultCard from 'components/noResultCard/NoResultCard';
+import Loader from 'components/loader/Loader';
 
 const Movies = () => {
   const location = useLocation();
   // const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [searchData, setSearchData] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
@@ -34,10 +37,13 @@ const Movies = () => {
   useEffect(() => {
     const fetchSearchingMovies = async () => {
       try {
+        setIsLoading(true);
         const data = await get(ENDPOINT);
         setSearchData(data);
       } catch (error) {
         console.error('Помилка при виконанні запиту:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -91,11 +97,13 @@ const Movies = () => {
         </ButtonForm>
       </Form>
 
-      {searchData?.results?.length === 0 && (
+      {isLoading && <Loader />}
+
+      {!isLoading && searchData?.results?.length === 0 && (
         <NoResultCard>Oops! There are no movies found...</NoResultCard>
       )}
 
-      {searchData && (
+      {!isLoading && searchData && (
         <MoviesList>
           {searchData.results.map(({ id, title }) => {
             return (

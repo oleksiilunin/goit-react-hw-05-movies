@@ -79,7 +79,7 @@ const MovieDetails = () => {
   // console.log(movieData);
 
   if (!movieData) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const {
