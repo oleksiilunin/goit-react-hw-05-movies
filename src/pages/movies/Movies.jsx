@@ -4,7 +4,7 @@ import { get } from 'services/api';
 import { toast } from 'react-toastify';
 import notifyOptions from 'helpers/toastNotifyOptions';
 import { FiSearch } from 'react-icons/fi';
-import NoResultCard from 'components/NoResultCard/NoResultCard';
+import NoResultCard from 'components/noResultCard/NoResultCard';
 import {
   Form,
   ButtonForm,
