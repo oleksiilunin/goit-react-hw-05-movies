@@ -7,7 +7,7 @@ import {
   ReviewsTitle,
   ReviewsTitleSpan,
 } from './Reviews.styled';
-import Loader from 'components/Loader/Loader';
+import Loader from 'components/loader/Loader';
 
 const Reviews = () => {
   const { movieId } = useParams();

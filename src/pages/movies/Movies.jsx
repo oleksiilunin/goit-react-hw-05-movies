@@ -4,7 +4,6 @@ import { get } from 'services/api';
 import { toast } from 'react-toastify';
 import notifyOptions from 'helpers/toastNotifyOptions';
 import { FiSearch } from 'react-icons/fi';
-import NoResultCard from 'components/noResultCard/NoResultCard';
 import {
   Form,
   ButtonForm,
@@ -15,6 +14,7 @@ import {
   MoviesItem,
   MovieTitle,
 } from './Movies.styled';
+import NoResultCard from 'components/noResultCard/NoResultCard';
 
 const Movies = () => {
   const location = useLocation();
