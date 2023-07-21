@@ -10,6 +10,7 @@ import {
   CastItem,
   CastList,
 } from './Cast.styled';
+import Loader from 'components/Loader/Loader';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -38,7 +39,7 @@ const Cast = () => {
   }, [ENDPOINT]);
 
   if (!castData) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const { cast } = castData;

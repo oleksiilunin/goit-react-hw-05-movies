@@ -7,6 +7,7 @@ import {
   ReviewsTitle,
   ReviewsTitleSpan,
 } from './Reviews.styled';
+import Loader from 'components/Loader/Loader';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -36,7 +37,7 @@ const Reviews = () => {
   }, [ENDPOINT]);
 
   if (!reviewsData) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const { results } = reviewsData;
