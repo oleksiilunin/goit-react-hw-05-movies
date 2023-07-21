@@ -1,9 +1,6 @@
 import { GlobalStyles } from 'components/GlobalStyles';
 import { Suspense } from 'react';
-import {
-  // NavLink,
-  Outlet,
-} from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
